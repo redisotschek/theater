@@ -2,20 +2,34 @@
   <v-card
     class="my-3 pa-5"
   >
-    <v-card-title class="text-h5 pa-0 mb-2">
-      {{name}}
-    </v-card-title>
     <v-row class="pa-0 ma-0">
       <calendar-page :date="date"></calendar-page>
-      <img :src="imgUrl" class="show-img mx-3" />
+      <v-img
+         :alt="name + ' image'"
+         class="shrink mx-3"
+         contain
+         :src="imgUrl"
+         transition="scale-transition"
+         width="100"
+      ></v-img>
+      <v-col>
+        <v-card-title class="text-h5 pa-0 mb-2">
+          <router-link class="text-decoration-none card-title" :to="`/event/${id}`">{{name}}</router-link>
+        </v-card-title>
 
+        <v-card-subtitle
+            class="pa-0 mt-1"
+        >
+          <location-marker :location="location"/>
+        </v-card-subtitle>
+      </v-col>
       <v-spacer></v-spacer>
       <v-card-actions>
         <v-btn
-            color="primary"
-            to="/"
-            text>
-          Tickets
+          color="primary"
+          :to="`/event/${id}`"
+        >
+          {{ $t('tickets') }}
         </v-btn>
       </v-card-actions>
     </v-row>
@@ -23,12 +37,12 @@
 </template>
 
 <script>
-  import {getAttributesFromBody} from "@/utils";
 
   import CalendarPage from "@/components/CalendarPage";
+  import LocationMarker from "@/components/LocationMarker";
   export default {
     name: 'EventCard',
-    components: {CalendarPage},
+    components: {LocationMarker, CalendarPage},
     props: {
       id: {
         type: Number,
@@ -46,12 +60,8 @@
         type: String,
         required: true
       },
-      price: {
-        type: Number,
-        required: true
-      },
-      image: {
-        type: Object,
+      img: {
+        type: String,
         required: true
       },
       tickets_available: {
@@ -59,25 +69,19 @@
         required: true
       }
     },
-    data: (() => {
-      return {
-      }
-    }),
     computed: {
       baseUrl() {
         return this.$store.getters.baseUrl;
       },
       imgUrl() {
-        return this.baseUrl + getAttributesFromBody(this.image).url;
+        return this.baseUrl + this.img;
       }
     },
   }
 </script>
 
 <style lang="scss" scoped>
-  .show-img {
-    width: 10em;
-    height: auto;
-    object-fit: cover;
+  .card-title {
+    color: black;
   }
 </style>

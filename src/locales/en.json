@@ -4,5 +4,33 @@
   "gallery": "Gallery",
   "events": {
     "upcoming_events": "Upcoming Events"
-  }
+  },
+  "dates": {
+    "md": "Monday",
+    "td": "Tuesday",
+    "wd": "Wednesday",
+    "thd": "Thursday",
+    "fd": "Friday",
+    "std": "Saturday",
+    "sd": "Sunday"
+  },
+  "months": {
+    "jan": "January",
+    "feb": "February",
+    "mar": "March",
+    "apr": "April",
+    "may": "May",
+    "jun": "June",
+    "jul": "July",
+    "aug": "August",
+    "sep": "September",
+    "oct": "October",
+    "nov": "November",
+    "dec": "December"
+  },
+  "days": {
+      "today": "Today",
+      "tomorrow": "Tomorrow"
+  },
+  "hours": "Hours"
 }

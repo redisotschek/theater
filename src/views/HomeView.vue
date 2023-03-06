@@ -29,23 +29,16 @@
     </v-carousel>
     <div>
       <h1 class="text-4xl mt-5 mb-5">{{ $t('events.upcoming_events') }}</h1>
-      <v-col cols="12">
-        <event-card
-          v-for="event in events"
-          :key="event.id"
-          :id="event.id"
-          v-bind="event.attributes"
-        />
-      </v-col>
+      <event-list></event-list>
     </div>
   </div>
 </template>
 <script>
 // @ is an alias to /src
-import EventCard from "@/components/EventCard";
+import EventList from "@/components/EventList";
 export default {
   name: "HomeView",
-  components: {EventCard},
+  components: {EventList},
   data () {
     return {
       colors: [
@@ -63,14 +56,6 @@ export default {
         'Fifth',
       ],
     }
-  },
-  computed: {
-    events() {
-      return this.$store.getters.events;
-    },
-  },
-  created() {
-    this.$store.dispatch('getEventsList');
   },
 };
 </script>
